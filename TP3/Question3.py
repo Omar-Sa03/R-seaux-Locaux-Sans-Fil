@@ -1,8 +1,31 @@
 import math
 import numpy as np
+import subprocess
+import re
 import matplotlib.pyplot as plt
 import tkinter as tk
 from tkinter import messagebox
+
+'''def get_rssi_from_cmd():
+    rssi_values = []
+    process = subprocess.Popen("netsh wlan show interfaces", stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdout, stderr = process.communicate()
+    stdout = stdout.decode("utf-8")
+
+    matches = re.findall(r"Signal\s+:\s+(\d+)%", stdout)
+    for match in matches:
+        rssi = int(match)
+        rssi_values.append(rssi)
+        
+        if len(rssi_values) >= 3:
+            break
+
+    if len(rssi_values) < 3:
+        raise ValueError("Less than 3 RSSI values found. Ensure you are connected to at least 3 access points.")
+
+    rssi_values = [-100 + (rssi * 0.5) for rssi in rssi_values]
+    
+    return rssi_values '''
 
 def calculer_distance(rssi, rssi_reference, n=3):
     return 10 ** ((rssi_reference - rssi) / (10 * n))
